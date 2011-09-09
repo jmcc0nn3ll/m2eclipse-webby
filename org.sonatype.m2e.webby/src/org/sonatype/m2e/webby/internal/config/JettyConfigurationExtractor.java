@@ -48,7 +48,14 @@ public class JettyConfigurationExtractor {
       if(JETTY_6_PLUGIN_AID.equals(jettyPlugin.getArtifactId())) {
         jettyConfig.setContainerId("jetty6x");
       } else {
-        jettyConfig.setContainerId("jetty7x");
+    	  if ( jettyPlugin.getVersion().startsWith("7") )
+    	  {
+    		  jettyConfig.setContainerId("jetty7x");
+    	  }
+    	  else
+    	  {
+    		  jettyConfig.setContainerId("jetty8x");
+    	  }
       }
 
       Xpp3Dom dom = getConfig(jettyPlugin);
